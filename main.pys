@@ -1,36 +1,39 @@
 #################################
 #INITIALIZE
 #called externally so it is set from functions.py or init.py
-
+#import os
+#import itertools
+#import hashlib #causes issues with emscripten
+#import random
+#import math
+#import time
+#import shuffle
+#init=1
 #################################
-if (init) :
- import irr
+#if (init) :
+import QT
 
 # qt.getstring="../media/cards.pys"
 #import itertools
 #not needed includes just for testing
- scene.using ('../media/string.py',"1");
+# scene.using ('./string.py',"1");
 
 
- import os
- import itertools
-#import hashlib #causes issues with emscripten
- #import random
- import math
- import time
- #import shuffle
 
-#scene.using ('../media/lib/python2.7/random.py',"1"); #not working
- scene.using ('../media/random.py',"1");
+
+#scene.using ('./lib/python2.7/random.py',"1"); #not working
+# scene.using ('./random.py',"1");
+
+
+QT.settext('test')
 
 # ticks = time.time()
 
-# responses = ["Not so sure", "42", "Most likely", "Absolutely not", "Outlook is good", "I see good things happening", "Never",
-"Negative", "Could be", "Unclear, ask again", "Yes", "No", "Possible, but not probable"]
+# responses = ["Not so sure", "42", "Most likely", "Absolutely not", "Outlook is good", "I see good things happening", "Never", "Negative", "Could be", "Unclear, ask again", "Yes", "No", "Possible, but not probable"]
 
- myr.time_reseed();
- print randint(1,8);
- print(choice(responses))
+# myr.time_reseed();
+# print randint(1,8);
+# print(choice(responses))
 
 # myr.time_reseed();
 
@@ -64,7 +67,7 @@ if (init) :
 
  # test.pop(1)
 
-     #    distance            =            math.sqrt(blank.x**2            +            blank.y**2
+     #    distance            =            #math.sqrt(blank.x**2            +            blank.y**2
       # fp            =            os.popen(cmd)
 
       #     os.path.exists('memo.txt')
@@ -73,8 +76,6 @@ if (init) :
       # cwd            =            os.getcwd()
   #sum(test)
 
-
-
   # deck[i][0]deck[i][1]
 
    #1Spade
@@ -82,28 +83,14 @@ if (init) :
    #1Diamond
    #1Clubs
 
- icount=0
+# icount=0
 #################################
- init = 0 #initialization finish - needs whitespace infront
+# init = 0 #initialization finish - needs whitespace infront
 #################################
 
 #MAIN LOOP gets ran everytime
 
 #################################
-#if sound done playing loop
-#
-#if (icount > 400):
-# scene.soundman(1,1,1)
-# icount=0
-#else:
-# icount+=1
-
-#irr.delay(1000);
-
-
-#scene.using ('../media/keys.pys',"1");
-
-#irr.update(); #could set timing here, maybe smgr gui  etc  todo
 
 
 

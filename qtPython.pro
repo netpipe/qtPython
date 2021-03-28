@@ -19,12 +19,12 @@ DEFINES += QT_DEPRECATED_WARNINGS PYTHON
 
 linux {
 DEFINES += PYTHON
-LIBS += -lpython2.7
+LIBS += -lpython2.7 -ltar
 }
 
 win32 {
 DEFINES += PYTHON
-LIBS += -lpython2.7
+LIBS += -lpython2.7 -ltar
 }
 
 # You can also make your code fail to compile if you use deprecated APIs.

@@ -6,8 +6,11 @@
 #include <vector>
 #include <string.h>
 #include <stdlib.h>
-//#include <libtar.h>
+#include <libtar.h>
 #include <QString>
+
+#include <mainwindow.h>
+#include "ui_mainwindow.h"
 
 
 #ifdef __EMSCRIPTEN__
@@ -21,17 +24,29 @@ using namespace std;
 
 //vector<ITexture *> texture_array; //Our array of textures
 
+QString test3;
+
+
+void MainWindow::settext(){
+
+    ui->label->setText(test3.toLatin1());
+
+}
+
 
 static PyObject * qt_LoadTexture(PyObject * self,PyObject * args)
 {
 //    //Watch this, tricky,remember to pass string ADDRESS to PyArg_ParseTuple
-//    char * tex_name;
-//    PyArg_ParseTuple(args,"s",&tex_name);
+    char * tex_name;
+    PyArg_ParseTuple(args,"s",&tex_name);
 //    texture_array.push_back(driver->getTexture(tex_name));
 //    /*The line below is sorta kludgy, but it works.It won't hold up if you remove a texture
 //    from the array though,so watch your step, kid. I'll leave it to you to come up with
 //    a more intuitive method of storing the textures*/
-//    return Py_BuildValue("l",texture_array.size() - 1);
+
+    test3 += "rffr"; //tex_name;
+    return Py_None;
+   // settext(test);
 };
 
 
@@ -49,7 +64,7 @@ boot up your Python IDE and type import math. Press enter, then type: math.sin._
 that there are two underscores in front and behind of doc, that is not a typo.*/
 static PyMethodDef qt_funcs[] =
 {
-    {"set_texture",qt_LoadTexture,METH_VARARGS,"Adds a texture to a scene node"},
+    {"settext",qt_LoadTexture,METH_VARARGS,"Adds a texture to a scene node"},
     {NULL,NULL,0,NULL}
 };
 
@@ -73,6 +88,7 @@ void ExecuteScript(QString scriptname)
     result.append(scriptname.toStdString().c_str());
     result.append("')");
     PyRun_SimpleString(result.toLocal8Bit().data());
+    //PyRun_SimpleString("./main.pys");
     /*This function was pretty annoying to write. The errors I kept on getting were textbook
     examples on why namespaces were important...seriously.It kept on confusing std::string
     with irr::core::string, but as you can see, I solved that problem by explicitly stating
@@ -80,30 +96,32 @@ void ExecuteScript(QString scriptname)
 };
 
 
-void qtPython()
+void MainWindow::qtPython()
 {
-//    TAR* tar;
-//    if (tar_open(&tar, "./media/pydata.tar", NULL, O_RDONLY, 0, 0) != 0) {
-//        fprintf(stderr, "Error: failed to open pydata.tar\n");
-//        exit(1);
-//    }
-//    if (tar_extract_all(tar, (char*) "/") != 0) {
-//        fprintf(stderr, "Error: failed to extract pydata.tar\n");
-//        exit(1);
-//    }
-//    tar_close(tar);
+    /*
+    TAR* tar;
+    if (tar_open(&tar, "./media/pydata.tar", NULL, O_RDONLY, 0, 0) != 0) {
+        fprintf(stderr, "Error: failed to open pydata.tar\n");
+        exit(1);
+    }
+    if (tar_extract_all(tar, (char*) "/") != 0) {
+        fprintf(stderr, "Error: failed to extract pydata.tar\n");
+        exit(1);
+    }
+    tar_close(tar);
+*/
 
     //Py_Initialize(); //Initialize Python
-    setenv("PYTHONHOME", "/", 0);
+   // setenv("PYTHONHOME", "/", 0);
 
 
     Py_Initialize(); //Initialize Python
 
     init_qt(); //Initialize our module
 
-    ExecuteScript("./media/script.pys"); //Using our handy dandy script execution function
+    ExecuteScript("./main.pys"); //Using our handy dandy script execution function
 
-            ExecuteScript("./media/script2.pys");
+        //    ExecuteScript("./media/script2.pys");
 
 //emscripten_exit_with_live_runtime();
 

@@ -15,6 +15,21 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void qtPython();
+
+    //in mainwindow.h
+    signals:
+    void changeTextSignal();
+
+    private slots:
+    void settext();
+
+
+
+private slots:
+    void on_pyrun_clicked();
+
+
 private:
     Ui::MainWindow *ui;
 };
