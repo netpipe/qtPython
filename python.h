@@ -6,7 +6,9 @@
 #include <vector>
 #include <string.h>
 #include <stdlib.h>
+#ifdef TAR1
 #include <libtar.h>
+#endif
 #include <QString>
 
 #include <mainwindow.h>
@@ -98,7 +100,7 @@ void ExecuteScript(QString scriptname)
 
 void MainWindow::qtPython()
 {
-    /*
+   #ifdef TAR11
     TAR* tar;
     if (tar_open(&tar, "./media/pydata.tar", NULL, O_RDONLY, 0, 0) != 0) {
         fprintf(stderr, "Error: failed to open pydata.tar\n");
@@ -109,13 +111,13 @@ void MainWindow::qtPython()
         exit(1);
     }
     tar_close(tar);
-*/
-
-    //Py_Initialize(); //Initialize Python
-   // setenv("PYTHONHOME", "/", 0);
 
 
+   Py_Initialize(); //Initialize Python
+   setenv("PYTHONHOME", "/", 0);
+#else
     Py_Initialize(); //Initialize Python
+#endif
 
     init_qt(); //Initialize our module
 

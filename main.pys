@@ -1,19 +1,19 @@
 #################################
 #INITIALIZE
 #called externally so it is set from functions.py or init.py
-#import os
-#import itertools
-#import hashlib #causes issues with emscripten
+init=1
+#################################
+if (init) :
+ import QT
+
+ import os
+ import itertools
+ #import hashlib #causes issues with emscripten
 #import random
-#import math
+ import math
 #import time
 #import shuffle
-#init=1
-#################################
-#if (init) :
-import QT
 
-# qt.getstring="../media/cards.pys"
 #import itertools
 #not needed includes just for testing
 # scene.using ('./string.py',"1");
