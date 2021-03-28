@@ -24,7 +24,7 @@ LIBS += -lpython2.7 -ltar
 
 win32 {
 DEFINES += PYTHON
-LIBS += -lpython2.7 -ltar
+LIBS += -lpython2.7
 }
 
 # You can also make your code fail to compile if you use deprecated APIs.

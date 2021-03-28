@@ -9,10 +9,10 @@ if (init) :
  import os
  import itertools
  #import hashlib #causes issues with emscripten
-#import random
+ #import random
  import math
-#import time
-#import shuffle
+ import time
+ #import shuffle
 
 #import itertools
 #not needed includes just for testing

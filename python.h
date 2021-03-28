@@ -121,10 +121,11 @@ void MainWindow::qtPython()
 
     init_qt(); //Initialize our module
 
+    #ifdef TAR1
     ExecuteScript("./main.pys"); //Using our handy dandy script execution function
-
-        //    ExecuteScript("./media/script2.pys");
-
+#else
+    ExecuteScript("./windows.pys");
+#endif
 //emscripten_exit_with_live_runtime();
 
     Py_Finalize(); //Shut down the Python interpreter
