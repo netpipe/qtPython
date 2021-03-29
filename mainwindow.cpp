@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 
 #ifdef PYTHON
-#include <python.h>
+#include <qtpython.h>
 #endif
 
 MainWindow::MainWindow(QWidget *parent) :

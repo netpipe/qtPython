@@ -40,7 +40,7 @@ SOURCES += \
 
 HEADERS += \
         mainwindow.h \
-    python.h
+        qtpython.h
 
 FORMS += \
         mainwindow.ui
