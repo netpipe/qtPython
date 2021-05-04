@@ -9,31 +9,32 @@ if (init) :
  import os
  import itertools
  #import hashlib #causes issues with emscripten
- #import random
+ import random
  import math
  import time
  #import shuffle
 
 #import itertools
 #not needed includes just for testing
-# scene.using ('./string.py',"1");
+ QT.using ('./string.py',"1");
 
 
 
 
-#scene.using ('./lib/python2.7/random.py',"1"); #not working
-# scene.using ('./random.py',"1");
+# QT.using ('./lib/python2.7/random.py',"1"); #not working
+ QT.using ('./random.py',"1");
 
 
-QT.settext('test')
 
-# ticks = time.time()
 
-# responses = ["Not so sure", "42", "Most likely", "Absolutely not", "Outlook is good", "I see good things happening", "Never", "Negative", "Could be", "Unclear, ask again", "Yes", "No", "Possible, but not probable"]
+ ticks = time.time()
 
-# myr.time_reseed();
-# print randint(1,8);
-# print(choice(responses))
+ responses = ["Not so sure", "42", "Most likely", "Absolutely not", "Outlook is good", "I see good things happening", "Never", "Negative", "Could be", "Unclear, ask again", "Yes", "No", "Possible, but not probable"]
+
+ myr.time_reseed();
+ print randint(1,8);
+ print(choice(responses))
+ QT.settext('test')
 
 # myr.time_reseed();
 

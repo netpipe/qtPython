@@ -28,6 +28,8 @@ using namespace std;
 
 QString test3;
 
+void ExecuteScript(QString scriptname);
+
 
 void MainWindow::settext(){
 
@@ -35,6 +37,29 @@ void MainWindow::settext(){
 
 }
 
+static PyObject * qt_TextBox(PyObject * self,PyObject * args)
+{
+//    //Watch this, tricky,remember to pass string ADDRESS to PyArg_ParseTuple
+    char * tex_name;
+    PyArg_ParseTuple(args,"s",&tex_name);
+//    texture_array.push_back(driver->getTexture(tex_name));
+//    /*The line below is sorta kludgy, but it works.It won't hold up if you remove a texture
+//    from the array though,so watch your step, kid. I'll leave it to you to come up with
+//    a more intuitive method of storing the textures*/
+
+    test3 += tex_name;//"rffr"; //tex_name;
+    return Py_None;
+   // settext(test);
+};
+
+PyObject * qt_using(PyObject * self,PyObject * args){
+    char * script;
+    char * arg;
+    PyArg_ParseTuple(args,"ss",&script,&arg);
+
+    ExecuteScript(script);
+return Py_BuildValue("");
+}
 
 static PyObject * qt_LoadTexture(PyObject * self,PyObject * args)
 {
@@ -46,7 +71,7 @@ static PyObject * qt_LoadTexture(PyObject * self,PyObject * args)
 //    from the array though,so watch your step, kid. I'll leave it to you to come up with
 //    a more intuitive method of storing the textures*/
 
-    test3 += "rffr"; //tex_name;
+    test3 += tex_name;//"rffr"; //tex_name;
     return Py_None;
    // settext(test);
 };
@@ -66,6 +91,8 @@ boot up your Python IDE and type import math. Press enter, then type: math.sin._
 that there are two underscores in front and behind of doc, that is not a typo.*/
 static PyMethodDef qt_funcs[] =
 {
+
+    {"using",qt_using,METH_VARARGS,"Adds a texture to a scene node"},
     {"settext",qt_LoadTexture,METH_VARARGS,"Adds a texture to a scene node"},
     {NULL,NULL,0,NULL}
 };
