@@ -34,7 +34,8 @@ if (init) :
  myr.time_reseed();
  print randint(1,8);
  print(choice(responses))
- QT.settext('test')
+# QT.settext('test')
+ QT.settext(choice(responses))
 
 # myr.time_reseed();
 

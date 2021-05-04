@@ -47,7 +47,7 @@ static PyObject * qt_TextBox(PyObject * self,PyObject * args)
 //    from the array though,so watch your step, kid. I'll leave it to you to come up with
 //    a more intuitive method of storing the textures*/
 
-    test3 += tex_name;//"rffr"; //tex_name;
+    test3 = tex_name;//"rffr"; //tex_name;
     return Py_None;
    // settext(test);
 };
@@ -58,6 +58,23 @@ PyObject * qt_using(PyObject * self,PyObject * args){
     PyArg_ParseTuple(args,"ss",&script,&arg);
 
     ExecuteScript(script);
+return Py_BuildValue("");
+}
+
+PyObject * qt_Delay(PyObject * self,PyObject * args){ //PyIrr_Delay
+    //repurpose this for a path move delay
+    float delay;
+    PyArg_ParseTuple(args,"f",&delay);
+ //   device->sleep(delay);
+    usleep(delay);
+return Py_BuildValue("");
+}
+
+PyObject * qt_Sleep(PyObject * self,PyObject * args){
+    int ammount;
+    PyArg_ParseTuple(args,"i",&ammount);
+    usleep(ammount);
+//    device->sleep(ammount);
 return Py_BuildValue("");
 }
 
@@ -76,6 +93,21 @@ static PyObject * qt_LoadTexture(PyObject * self,PyObject * args)
    // settext(test);
 };
 
+PyObject * qt_exec(PyObject * self,PyObject * args){ //active camera
+char * script;
+char * arg;
+    PyArg_ParseTuple(args,"ss",&script,&arg);
+//sts = system(command);s
+//popen("wget http://google.com", "w");
+}
+
+PyObject * qt_getTime(PyObject * self,PyObject * args){ //active camera
+    int type;
+    PyArg_ParseTuple(args,"i",&type);
+//    u32 tm = device->getTimer()->getRealTime();
+    //device->sleep(ammount);
+//return Py_BuildValue("i",tm);
+}
 
 /*Yup, this is an array of type PyMethodDef containing all the functions which we want
 to expose to the Python interpreter. The first parameter is a string telling what the name
@@ -91,9 +123,12 @@ boot up your Python IDE and type import math. Press enter, then type: math.sin._
 that there are two underscores in front and behind of doc, that is not a typo.*/
 static PyMethodDef qt_funcs[] =
 {
-
+    {"gettime",qt_getTime,METH_VARARGS,"Adds a texture to a scene node"},
+    {"exec",qt_exec,METH_VARARGS,"Adds a texture to a scene node"},
+    {"sleep",qt_Sleep,METH_VARARGS,"Adds a texture to a scene node"},
+    {"delay",qt_Delay,METH_VARARGS,"Adds a texture to a scene node"},
     {"using",qt_using,METH_VARARGS,"Adds a texture to a scene node"},
-    {"settext",qt_LoadTexture,METH_VARARGS,"Adds a texture to a scene node"},
+    {"settext",qt_TextBox,METH_VARARGS,"Adds a texture to a scene node"},
     {NULL,NULL,0,NULL}
 };
 
