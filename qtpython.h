@@ -162,9 +162,9 @@ void ExecuteScript(QString scriptname)
 
 void MainWindow::qtPython()
 {
-   #ifdef TAR11
+   #ifdef TAR11 //for emscripten
     TAR* tar;
-    if (tar_open(&tar, "./media/pydata.tar", NULL, O_RDONLY, 0, 0) != 0) {
+    if (tar_open(&tar, "./pydata.tar", NULL, O_RDONLY, 0, 0) != 0) {
         fprintf(stderr, "Error: failed to open pydata.tar\n");
         exit(1);
     }
@@ -178,6 +178,9 @@ void MainWindow::qtPython()
    Py_Initialize(); //Initialize Python
    setenv("PYTHONHOME", "/", 0);
 #else
+#ifdef WIN32
+Py_SetPythonHome( ".\\pydata\\" );
+#endif
     Py_Initialize(); //Initialize Python
 #endif
 
@@ -185,8 +188,9 @@ void MainWindow::qtPython()
 
     #ifdef TAR1
     ExecuteScript("./main.pys"); //Using our handy dandy script execution function
-#else
-    ExecuteScript("./windows.pys");
+#else // windows
+     ExecuteScript("./main.pys");
+    //ExecuteScript("./windows.pys");
 #endif
 //emscripten_exit_with_live_runtime();
 
